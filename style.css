@@ -1,63 +1,139 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #f44336;
+  background: linear-gradient(135deg, #ff5252, #ff1744);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  background: #ffffff;
+  width: 95%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   text-align: center;
-  padding: 30px;
 }
 
 h1 {
-  color: white;
+  color: #e53935;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
+/* SEARCH AREA */
 .search-box {
-  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.search-box input,
+.search-box input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: #e53935;
+}
+
 .search-box button {
-  width: auto;
-  padding: 10px;
+  padding: 12px 18px;
   font-size: 16px;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-@media (max-width: 480px) {
-  .search-box input,
-  .search-box button {
-    width: 90%; /* small screens */
-    margin: 5px 0;
-    display: block;
-  }
-}
-
-input {
-  padding: 10px;
-  width: 200px;
-  font-size: 16px;
-}
-
-button {
-  padding: 10px 15px;
-  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #e53935;
+  color: white;
   cursor: pointer;
+  transition: 0.2s;
 }
 
+.search-box button:hover {
+  background: #c62828;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: bold;
+}
+
+/* CARD */
 .card {
-  background: white;
-  width: 90%;
-  max-width: 350px;
-  margin: 20px auto;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #f5f5f5, #ffffff);
+  border-radius: 18px;
   padding: 20px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .card img {
-  width: 80%;
-  max-width: 150px;
+  width: 160px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.card p {
+  font-size: 16px;
+  margin: 6px 0;
 }
 
 .hidden {
   display: none;
+}
+
+/* TYPE BADGE DESIGN */
+#pokemonType {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #eeeeee;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box input,
+  .search-box button {
+    width: 100%;
+  }
+
+  .card img {
+    width: 130px;
+  }
 }
