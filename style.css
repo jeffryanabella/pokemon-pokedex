@@ -13,6 +13,21 @@ h1 {
   margin: 20px 0;
 }
 
+.search-box input,
+.search-box button {
+  width: 45%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  .search-box input,
+  .search-box button {
+    width: 90%; /* small screens */
+    margin: 5px 0;
+  }
+}
+
 input {
   padding: 10px;
   width: 200px;
@@ -27,11 +42,17 @@ button {
 
 .card {
   background: white;
-  width: 250px;
+  width: 90%;
+  max-width: 350px;
   margin: 20px auto;
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card img {
+  width: 80%;
+  max-width: 150px;
 }
 
 .hidden {
