@@ -42,28 +42,45 @@ async function getPokemon() {
     return;
   }
 
+  //Show loading text while fetching
+  const loading = document.getElementById("loading");
+  loading.classList.remove("hidden");
+
   try {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
 
     if (!response.ok) {
-      errorMsg.textContent = "Pokémon not found";
+      throw new Error("Pokemon not found");
     }
 
     const data = await response.json();
     const type = data.types[0].type.name;
 
+    // Start loading the image
     image.src = data.sprites.front_default;
-    nameText.textContent = data.name.toUpperCase();
-    typeText.textContent = type.toUpperCase();
-    typeText.style.background = typeColors[type] || "#eee";
-    hpText.textContent = "HP: " + data.stats[0].base_stat;
-    attackText.textContent = "Attack: " + data.stats[1].base_stat;
-    defenseText.textContent = "Defense: " + data.stats[2].base_stat;
 
-    errorMsg.classList.add("hidden")
-    card.classList.remove("hidden");
+    //Waiting for the image to load
+    image.onload = function() {
+      //Hide loading spinner
+      loading.classList.add("hidden");
+
+      //Loads rest of stats
+      nameText.textContent = data.name.toUpperCase();
+      typeText.textContent = type.toUpperCase();
+      typeText.style.background = typeColors[type] || "#eee";
+      hpText.textContent = "HP: " + data.stats[0].base_stat;
+      attackText.textContent = "Attack: " + data.stats[1].base_stat;
+      defenseText.textContent = "Defense: " + data.stats[2].base_stat;
+
+      errorMsg.classList.add("hidden")
+      card.classList.remove("hidden");
+    }
+
+    
 
   } catch (error) {
+    loading.classList.add("hidden");
+    errorMsg.textContent = error.message;
     errorMsg.classList.remove("hidden");
     card.classList.add("hidden");
   }
