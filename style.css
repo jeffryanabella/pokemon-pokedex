@@ -15,9 +15,11 @@ h1 {
 
 .search-box input,
 .search-box button {
-  width: 45%;
+  width: auto;
   padding: 10px;
   font-size: 16px;
+  display: inline-block;
+  margin-right: 10px;
 }
 
 @media (max-width: 480px) {
@@ -25,6 +27,7 @@ h1 {
   .search-box button {
     width: 90%; /* small screens */
     margin: 5px 0;
+    display: block;
   }
 }
 
